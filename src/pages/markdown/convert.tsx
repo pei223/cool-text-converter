@@ -1,33 +1,67 @@
-import { Box, Card, CardContent, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Layout from "../../components/blocks/common/Layout";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MarkdownConverter } from "../../services/converter/types";
-import { convertToMarkdown } from "../../services/converter";
+import { markdownConverters, matchConverter } from "../../services/converter";
+import { ConvertibleMarkdownFormats } from "../../services/consts/format";
+
+const converterMap: Record<ConvertibleMarkdownFormats, MarkdownConverter> =
+  markdownConverters.reduce((dict, v) => {
+    dict[v.formatName()] = v;
+    return dict;
+  }, {} as Record<ConvertibleMarkdownFormats, MarkdownConverter>);
+
+type SelectedItem = {
+  format: ConvertibleMarkdownFormats;
+  converter: MarkdownConverter;
+};
+
+type SelectableFormat = ConvertibleMarkdownFormats | "";
 
 function MarkdownConvert() {
   const [src, setSrc] = useState("");
   const [dist, setDist] = useState("");
-  const [converter, setConverter] = useState<MarkdownConverter | null>(null);
+  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
 
   useEffect(() => {
-    const result = convertToMarkdown(src);
-    if (result == null) {
-      setConverter(null);
+    const converter = matchConverter(src);
+    if (converter == null) {
+      setSelectedItem(null);
       return;
     }
-    setConverter(result.convereter);
-    setDist(result.result);
+    setSelectedItem({
+      format: converter.formatName(),
+      converter,
+    });
   }, [src]);
 
   useEffect(() => {
-    if (converter == null) {
+    if (selectedItem == null) {
+      setDist("");
       return;
     }
-    const result = converter.convertToMarkdown(src);
-    setDist(result);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [converter]);
+    setDist(selectedItem.converter.convertToMarkdown(src));
+  }, [src, selectedItem]);
+
+  const onFormatSelected = useCallback((v: ConvertibleMarkdownFormats | "") => {
+    if (v === "") {
+      setSelectedItem(null);
+      return;
+    }
+    setSelectedItem({
+      format: v as ConvertibleMarkdownFormats,
+      converter: converterMap[v as ConvertibleMarkdownFormats],
+    });
+  }, []);
 
   return (
     <Layout>
@@ -36,17 +70,38 @@ function MarkdownConvert() {
           <Typography color="text.secondary" variant="h5" component="h1">
             Markdown変換
           </Typography>
-          <Typography
-            color="text.secondary"
-            variant="h6"
-            component="p"
+          <Box
             sx={{
-              paddingTop: 2,
+              display: "flex",
+              paddingY: 2,
+              alignItems: "center",
             }}
           >
-            認識したフォーマット:{" "}
-            {converter == null ? "-" : converter.formatName()}
-          </Typography>
+            <Typography
+              color="text.secondary"
+              variant="h6"
+              component="p"
+              marginRight={2}
+            >
+              変換対象フォーマット:
+            </Typography>
+            <Select
+              sx={{
+                minWidth: "100px",
+              }}
+              value={
+                selectedItem == null ? "-" : selectedItem.converter.formatName()
+              }
+              onChange={(e) =>
+                onFormatSelected(e.target.value as SelectableFormat)
+              }
+            >
+              <MenuItem value={""}>-</MenuItem>
+              {markdownConverters.map((v) => (
+                <MenuItem value={v.formatName()}>{v.formatLabel()}</MenuItem>
+              ))}
+            </Select>
+          </Box>
           <Box
             component="div"
             sx={{

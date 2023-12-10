@@ -1,3 +1,5 @@
+import { ConvertibleMarkdownFormats } from "../consts/format"
+
 export interface MarkdownConverter extends Format {
     // 該当フォーマットと認識できなければthrowする.
     // 必要ならパースしてメモリキャッシュなどする.
@@ -6,10 +8,11 @@ export interface MarkdownConverter extends Format {
     // nullならそれ以上は存在しない.
     getDetailedConverter(v: string): MarkdownConverter | null
     convertToMarkdown(v: string): string
+    formatName(): ConvertibleMarkdownFormats
 }
 
 export interface Format {
-    formatName(): string
+    formatLabel(): string
 }
 
 export type ConvertResult<T> = {

@@ -1,4 +1,5 @@
 import { infoLog, warnLog } from "../../utils/logger";
+import { ConvertibleMarkdownFormats } from "../consts/format";
 import { MarkdownUnrecognizedError } from "../errors/types";
 import { ConvertResult, MarkdownConverter } from "./types";
 
@@ -57,7 +58,10 @@ export class URLConveter implements MarkdownConverter {
     convertToMarkdown(v: string): string {
         return `[リンクテキスト](${v})`
     }
-    formatName(): string {
+    formatName(): ConvertibleMarkdownFormats {
+        return "URL"
+    }
+    formatLabel(): string {
         return "URLリンク"
     }
 }
@@ -74,7 +78,37 @@ export class ImageConverter implements MarkdownConverter {
     convertToMarkdown(v: string): string {
         return `<img width="100" height="100" src="${v}" title="タイトル">`
     }
-    formatName(): string {
+    formatName(): ConvertibleMarkdownFormats {
+        return "Image"
+    }
+    formatLabel(): string {
         return "画像ファイル"
     }
+}
+
+
+export const markdownConverters: MarkdownConverter[] = [
+    new URLConveter(),
+    new ImageConverter(),
+]
+
+export const matchConverter = (v: string): MarkdownConverter | null => {
+    for (const cvt of markdownConverters) {
+        try {
+            cvt.recognize(v)
+            let detailFormat = cvt
+            // eslint-disable-next-line no-constant-condition
+            while (true) {
+                const newDetailFormat = detailFormat.getDetailedConverter(v)
+                if (newDetailFormat == null) {
+                    break
+                }
+                detailFormat = newDetailFormat
+            }
+            return detailFormat
+        } catch(e) {
+            infoLog(e)
+        }
+    }
+    return null
 }
