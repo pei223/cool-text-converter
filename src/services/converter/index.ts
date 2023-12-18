@@ -1,41 +1,12 @@
 import { infoLog, warnLog } from "../../utils/logger";
 import { ConvertibleMarkdownFormats } from "../consts/format";
 import { MarkdownUnrecognizedError } from "../errors/types";
-import { ConvertResult, MarkdownConverter } from "./types";
+import { MarkdownConverter } from "./types";
 
 const urlPattern = /^https?:\/\/[\w/:%#$&?()~.=+-]+$/;
 const imageExtensionPattern = /.*\.(png|jpg|jpeg)$/i;
 
-const genMarkdownFormats = (): MarkdownConverter[]=> {
-    return [
-        new URLConveter(),
-        new ImageConverter(),
-    ]
-}
 
-export const convertToMarkdown = (v: string): ConvertResult<MarkdownConverter> | null => {
-    for (const format of genMarkdownFormats()) {
-        try {
-            format.recognize(v)
-            let detailFormat = format
-            // eslint-disable-next-line no-constant-condition
-            while (true) {
-                const newDetailFormat = detailFormat.getDetailedConverter(v)
-                if (newDetailFormat == null) {
-                    break
-                }
-                detailFormat = newDetailFormat
-            }
-            return {
-                convereter: detailFormat,
-                result: detailFormat.convertToMarkdown(v)
-            }
-        } catch(e) {
-            infoLog(e)
-        }
-    }
-    return null
-}
 
 export class URLConveter implements MarkdownConverter {
     recognize(v: string) {
