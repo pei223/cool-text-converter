@@ -21,6 +21,9 @@ npm run dev
 ## テスト実行
 ```
 npm run test
+
+// スナップショットの更新
+npm run test:u
 ```
 
 ## 機能
