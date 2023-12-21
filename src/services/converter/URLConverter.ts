@@ -6,7 +6,7 @@ import { MarkdownConverter } from "./types";
 
 const urlPattern = /^https?:\/\/[\w/:%#$&?()~.=+-]+$/;
 
-export class URLConveter implements MarkdownConverter {
+export class URLConverter implements MarkdownConverter {
   recognize(v: string) {
     if (!urlPattern.test(v)) {
       throw new MarkdownUnrecognizedError(v, "Image", "regexp didn't applied");

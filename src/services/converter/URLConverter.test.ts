@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { URLConveter } from "./URLConverter";
+import { URLConverter } from "./URLConverter";
 
 describe("URLConverter", () => {
-  const converter = new URLConveter();
+  const converter = new URLConverter();
   describe("recognize", () => {
     it.each([
       "http://hoge.com",

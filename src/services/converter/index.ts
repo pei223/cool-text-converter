@@ -1,10 +1,10 @@
 import { infoLog } from "../../utils/logger";
 import { ImageConverter } from "./ImageConverter";
-import { URLConveter } from "./URLConverter";
+import { URLConverter } from "./URLConverter";
 import { MarkdownConverter } from "./types";
 
 export const markdownConverters: MarkdownConverter[] = [
-  new URLConveter(),
+  new URLConverter(),
   new ImageConverter(),
 ];
 
