@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { matchConverter } from ".";
 import { URLConverter } from "./URLConverter";
 import { ImageConverter } from "./ImageConverter";
+import { JsonConverter } from "./JsonConverter";
 
 describe("matchConverter", () => {
   // 詳細なケースはそれぞれのモジュールのテストで
@@ -13,6 +14,7 @@ describe("matchConverter", () => {
     // URLだけど画像のパターン
     ["http://hoge.png", ImageConverter.name],
     ["hoge.png", ImageConverter.name],
+    ['{"test": 1}', JsonConverter.name],
   ])("URL case(%s)", (v: string, expectedClass: string) => {
     const result = matchConverter(v);
     expect(result).not.toBeNull();
