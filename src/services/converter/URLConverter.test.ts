@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { URLConveter } from ".";
+import { URLConveter } from "./URLConverter";
 
 describe("URLConverter", () => {
   const converter = new URLConveter();

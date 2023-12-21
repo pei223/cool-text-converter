@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { ImageConverter } from ".";
+import { ImageConverter } from "./ImageConverter";
 
 describe("URLConverter", () => {
   const converter = new ImageConverter();
