@@ -1,11 +1,13 @@
 import { infoLog } from "../../utils/logger";
 import { ImageConverter } from "./ImageConverter";
+import { JsonConverter } from "./JsonConverter";
 import { URLConverter } from "./URLConverter";
 import { MarkdownConverter } from "./types";
 
 export const markdownConverters: MarkdownConverter[] = [
   new URLConverter(),
   new ImageConverter(),
+  new JsonConverter(),
 ];
 
 export const matchConverter = (v: string): MarkdownConverter | null => {
