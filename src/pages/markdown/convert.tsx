@@ -13,6 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 import { MarkdownConverter } from "../../services/converter/types";
 import { markdownConverters, matchConverter } from "../../services/converter";
 import { ConvertibleMarkdownFormats } from "../../services/consts/format";
+import MarkdownPreview from "../../components/blocks/common/MarkdownPreview";
 
 const converterMap: Record<ConvertibleMarkdownFormats, MarkdownConverter> =
   markdownConverters.reduce((dict, v) => {
@@ -103,26 +104,53 @@ function MarkdownConvert() {
             </Select>
           </Box>
           <Box
-            component="div"
             sx={{
               display: "flex",
-              alignItems: "center",
+              flexDirection: "column",
             }}
           >
-            <TextField
-              multiline
-              rows={20}
-              sx={{ width: "100%" }}
-              value={src}
-              onChange={(e) => setSrc(e.target.value)}
-            />
-            <ArrowForwardIosIcon />
-            <TextField
-              multiline
-              rows={20}
-              sx={{ width: "100%" }}
-              value={dist}
-              onChange={(e) => setDist(e.target.value)}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexShrink: 1,
+              }}
+            >
+              <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+                <Typography variant="body1" color="text.secondary">
+                  source
+                </Typography>
+                <TextField
+                  multiline
+                  rows={15}
+                  value={src}
+                  onChange={(e) => setSrc(e.target.value)}
+                />
+              </Box>
+              <Box sx={{ paddingX: 1 }}>
+                <ArrowForwardIosIcon />
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+                <Typography variant="body1" color="text.secondary">
+                  markdown
+                </Typography>
+                <TextField
+                  multiline
+                  value={dist}
+                  rows={15}
+                  onChange={(e) => setDist(e.target.value)}
+                />
+              </Box>
+            </Box>
+            <MarkdownPreview
+              sx={{
+                flex: 1,
+                marginTop: 1,
+                padding: 2,
+                border: "1px solid gainsboro",
+                borderRadius: "8px",
+              }}
+              markdownText={dist}
             />
           </Box>
         </CardContent>
