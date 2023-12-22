@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { JsonConverter } from "./JsonConverter";
 
-describe("URLConverter", () => {
+describe("JsonConverter", () => {
   const converter = new JsonConverter();
 
   describe("recognize", () => {

@@ -1,37 +1,37 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`URLConverter > converteToMarkdown({"child": {"hoge": 1}}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"child": {"hoge": 1}}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | child | {"hoge":1} |"
 `;
 
-exports[`URLConverter > converteToMarkdown({"child1": {"child2": {"hoge": 1}}}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"child1": {"child2": {"hoge": 1}}}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | child1 | {"child2":{"hoge":1}} |"
 `;
 
-exports[`URLConverter > converteToMarkdown({"test": "1", "hoge": 2}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"test": "1", "hoge": 2}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | test | 1 |
 | hoge | 2 |"
 `;
 
-exports[`URLConverter > converteToMarkdown({"test": "1"}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"test": "1"}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | test | 1 |"
 `;
 
-exports[`URLConverter > converteToMarkdown({"test": [1, 2]}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"test": [1, 2]}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | test | 1,2 |"
 `;
 
-exports[`URLConverter > converteToMarkdown({"test": 1}) - (%s) 1`] = `
+exports[`JsonConverter > converteToMarkdown({"test": 1}) - (%s) 1`] = `
 "| key | value |
 | ---- | ---- |
 | test | 1 |"
