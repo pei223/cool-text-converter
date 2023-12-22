@@ -1,4 +1,5 @@
 import { infoLog } from "../../utils/logger";
+import { FoldingConverter } from "./FoldingConverter";
 import { ImageConverter } from "./ImageConverter";
 import { JsonConverter } from "./JsonConverter";
 import { URLConverter } from "./URLConverter";
@@ -8,6 +9,7 @@ export const markdownConverters: MarkdownConverter[] = [
   new URLConverter(),
   new ImageConverter(),
   new JsonConverter(),
+  new FoldingConverter(),
 ];
 
 export const matchConverter = (v: string): MarkdownConverter | null => {
