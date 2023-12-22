@@ -1,14 +1,20 @@
 import { infoLog } from "../../utils/logger";
+import { CsvConverter } from "./CsvConverter";
 import { FoldingConverter } from "./FoldingConverter";
 import { ImageConverter } from "./ImageConverter";
 import { JsonConverter } from "./JsonConverter";
+import { TsvConverter } from "./TsvConverter";
 import { URLConverter } from "./URLConverter";
 import { MarkdownConverter } from "./types";
 
+// この順番で認識処理が走るので、
+// 誤検知されやすいものは下の方にする.
 export const markdownConverters: MarkdownConverter[] = [
   new URLConverter(),
   new ImageConverter(),
   new JsonConverter(),
+  new TsvConverter(),
+  new CsvConverter(),
   new FoldingConverter(),
 ];
 
