@@ -2,8 +2,7 @@ import {
   Box,
   Card,
   CardContent,
-  MenuItem,
-  Select,
+  Chip,
   TextField,
   Typography,
 } from "@mui/material";
@@ -25,8 +24,6 @@ type SelectedItem = {
   format: ConvertibleMarkdownFormats;
   converter: MarkdownConverter;
 };
-
-type SelectableFormat = ConvertibleMarkdownFormats | "";
 
 function MarkdownConvert() {
   const [src, setSrc] = useState("");
@@ -71,40 +68,48 @@ function MarkdownConvert() {
           <Typography color="text.secondary" variant="h5" component="h1">
             Markdown変換
           </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              paddingY: 2,
-              alignItems: "center",
-            }}
-          >
+          <Box sx={{ marginTop: 3 }}>
             <Typography
               color="text.secondary"
-              variant="h6"
+              variant="body2"
               component="p"
               marginRight={2}
             >
-              変換対象フォーマット:
+              変換対象フォーマット
             </Typography>
-            <Select
+            <Box
               sx={{
-                minWidth: "100px",
+                marginTop: 1,
+                paddingBottom: 2,
+                overflowX: "scroll",
+                whiteSpace: "nowrap",
               }}
-              value={
-                selectedItem == null ? "-" : selectedItem.converter.formatName()
-              }
-              onChange={(e) =>
-                onFormatSelected(e.target.value as SelectableFormat)
-              }
             >
-              <MenuItem value={""}>-</MenuItem>
               {markdownConverters.map((v) => (
-                <MenuItem value={v.formatName()}>{v.formatLabel()}</MenuItem>
+                <Chip
+                  sx={{
+                    marginRight: 1,
+                  }}
+                  onClick={() => onFormatSelected(v.formatName())}
+                  label={v.formatLabel()}
+                  variant={
+                    v.formatName() === selectedItem?.format
+                      ? "filled"
+                      : "outlined"
+                  }
+                  color={
+                    v.formatName() === selectedItem?.format
+                      ? "primary"
+                      : "default"
+                  }
+                  clickable
+                />
               ))}
-            </Select>
+            </Box>
           </Box>
           <Box
             sx={{
+              marginTop: 2,
               display: "flex",
               flexDirection: "column",
             }}
@@ -113,7 +118,6 @@ function MarkdownConvert() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                flexShrink: 1,
               }}
             >
               <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
@@ -158,5 +162,4 @@ function MarkdownConvert() {
     </Layout>
   );
 }
-
 export default MarkdownConvert;
