@@ -28,6 +28,10 @@ const StyledPre = styled.pre`
     border: 1px solid gainsboro;
     border-collapse: collapse;
   }
+  th {
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+  }
 
   th,
   td {
