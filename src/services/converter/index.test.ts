@@ -3,6 +3,8 @@ import { matchConverter } from ".";
 import { URLConverter } from "./URLConverter";
 import { ImageConverter } from "./ImageConverter";
 import { JsonConverter } from "./JsonConverter";
+import { CsvConverter } from "./CsvConverter";
+import { TsvConverter } from "./TsvConverter";
 
 describe("matchConverter", () => {
   // 詳細なケースはそれぞれのモジュールのテストで
@@ -15,6 +17,8 @@ describe("matchConverter", () => {
     ["http://hoge.png", ImageConverter.name],
     ["hoge.png", ImageConverter.name],
     ['{"test": 1}', JsonConverter.name],
+    ["tett\ttest\ttest\ntett\ttest\ttest", TsvConverter.name],
+    ["tett,test,test\ntett,test,test", CsvConverter.name],
   ])("URL case(%s)", (v: string, expectedClass: string) => {
     const result = matchConverter(v);
     expect(result).not.toBeNull();

@@ -45,8 +45,6 @@ npm run test:u
 
 ### markdown
 
-- CSV をテーブルに
-- TSV をテーブルに
 - excel ペースト結果をテーブルに
 - html テーブルをテーブルに
 
