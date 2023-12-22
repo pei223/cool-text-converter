@@ -2,6 +2,12 @@
 
 入力値を良い感じに解釈して、markdown とかに良い感じに変換する
 
+以下のURLでデプロイされている
+https://cool-text-converter.vercel.app/markdown/convert
+
+vercel: https://vercel.com/pei223/cool-text-converter
+
+
 ## Setup
 以下のツールをインストール
 - npm/node
@@ -24,6 +30,11 @@ npm run test
 
 // スナップショットの更新
 npm run test:u
+```
+
+## ビルド
+```
+npm run build
 ```
 
 ## 機能
