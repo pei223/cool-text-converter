@@ -12,6 +12,13 @@ type Props = {
 };
 
 const StyledPre = styled.pre`
+  code {
+    padding: 12px;
+    display: block;
+    background-color: gainsboro;
+    border-radius: 4px;
+    text-wrap: wrap;
+  }
   table {
     min-width: 200px;
   }
