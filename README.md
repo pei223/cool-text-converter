@@ -3,7 +3,7 @@
 入力値を良い感じに解釈して、markdown とかに良い感じに変換する
 
 以下のURLでデプロイされている
-https://cool-text-converter.vercel.app/markdown/convert
+https://cool-text-converter.vercel.app
 
 vercel: https://vercel.com/pei223/cool-text-converter
 
@@ -36,29 +36,3 @@ npm run test:u
 ```
 npm run build
 ```
-
-## 機能
-
-### markdown
-
-以下のフォーマットは自動解釈が可能.
-
-- URL リンク
-- 画像
-- JSON
-
-## 今後対応したいもの
-
-### 開発環境
-- CIでlint/test
-- E2Eテスト
-
-
-### markdown
-
-- excel ペースト結果をテーブルに
-- html テーブルをテーブルに
-
-### 共通
-
-- コピーボタン
