@@ -71,7 +71,7 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-
+  // ローカルモードの時だけ自動でサーバーを立ち上げるようにする
   ...(process.env.MODE === "local"
     ? {
         webServer: {
