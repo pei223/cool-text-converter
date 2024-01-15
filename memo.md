@@ -10,7 +10,6 @@ npm create vite
 // https://styled-components.com/docs/basics#installation
 npm i styled-components
 
-
 // ルーティングライブラリ
 // https://reactrouter.com/en/main/start/tutorial
 npm install react-router-dom
@@ -36,6 +35,13 @@ npm i react-error-boundary
 
 // snackbar表示ライブラリ
 // https://notistack.com/getting-started
+```
+
+## E2E
+https://github.com/microsoft/playwright
+
+```
+npm init playwright@latest
 ```
 
 ## 参考

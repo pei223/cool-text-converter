@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "vitest",
+    "test": "vitest -r src",
     "test:u": "vitest -u",
+    "test:e2e": "npx playwright test",
+    "test:e2e-local": "MODE=local HOST=http://localhost:5173 npx playwright test",
     "build": "tsc && vite build",
     "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -27,7 +29,9 @@
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/markdown-it": "^13.0.7",
+    "@types/node": "^20.11.2",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
