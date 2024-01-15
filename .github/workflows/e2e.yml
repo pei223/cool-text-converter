@@ -1,5 +1,15 @@
 name: E2E Tests
 on:
+  # 手動でgithub Actionsから実施できる設定
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 環境
+        default: local
+        type: choice
+        options:
+          - local
   push:
     branches: [ main ]
   pull_request:
@@ -17,8 +27,13 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
+    - name: Run Playwright tests (local)
+      if: inputs.mode == null || inputs.mode == 'local'
       run: npm run test:e2e-local
+    - name: Run Playwright tests (other)
+      # 他の環境が入る想定
+      if: inputs.mode != null && inputs.mode != 'local'
+      run: npm run test:e2e
     - uses: actions/upload-artifact@v3
       if: always()
       with:
