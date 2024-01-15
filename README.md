@@ -67,3 +67,11 @@ npm run build
 ```
 markdown-convert-page:src-input:text-area
 ```
+
+## その他技術的なところ
+勉強のために色々盛り込んでみた
+
+- 単体テストに加えてE2E
+- 単体テスト/lintをCIで回す
+- CDはVercel
+- E2E tests workflowはGithub Actions上で手動で実行できる
