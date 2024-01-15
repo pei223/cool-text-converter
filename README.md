@@ -26,13 +26,44 @@ npm run dev
 
 ## テスト実行
 ```
+// install supported browsers
+npx playwright install
+
 npm run test
 
 // スナップショットの更新
 npm run test:u
 ```
 
+## E2Eテスト
+### test
+```
+npm run test:e2e-local
+# UI操作モード
+npm run test:e2e-local -- --ui
+# テストレポート表示
+npx playwright show-report --port 9999
+```
+
+### テスト生成
+```
+npm run dev
+npx playwright codegen localhost:5173
+```
+
+
 ## ビルド
 ```
 npm run build
+```
+
+## data-testid命名規則
+
+```
+<該当コンポーネント名>:<対象の要約>:<コンポーネント種別>
+```
+
+例えばmarkdownのconvert画面の入力フォームは以下の通り
+```
+markdown-convert-page:src-input:text-area
 ```
