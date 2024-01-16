@@ -87,6 +87,7 @@ function MarkdownConvert() {
             >
               {markdownConverters.map((v) => (
                 <Chip
+                  data-testid={`btn:markdown-convert-page:convert-${v.formatName()}`}
                   sx={{
                     marginRight: 1,
                   }}
@@ -125,6 +126,7 @@ function MarkdownConvert() {
                   source
                 </Typography>
                 <TextField
+                  data-testid="textarea:markdown-convert-page:src-text"
                   multiline
                   rows={15}
                   value={src}
@@ -139,6 +141,7 @@ function MarkdownConvert() {
                   markdown
                 </Typography>
                 <TextField
+                  data-testid="textarea:markdown-convert-page:dst-text"
                   multiline
                   value={dist}
                   rows={15}
@@ -147,6 +150,7 @@ function MarkdownConvert() {
               </Box>
             </Box>
             <MarkdownPreview
+              data-testid="text:markdown-convert-page:preview"
               sx={{
                 flex: 1,
                 marginTop: 1,
