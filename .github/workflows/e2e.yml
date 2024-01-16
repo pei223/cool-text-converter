@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - local
+          - prd
   push:
     branches: [ main ]
   pull_request:
@@ -30,10 +31,12 @@ jobs:
     - name: Run Playwright tests (local)
       if: inputs.mode == null || inputs.mode == 'local'
       run: npm run test:e2e-local
-    - name: Run Playwright tests (other)
+    - name: Run Playwright tests (prd)
       # 他の環境が入る想定
-      if: inputs.mode != null && inputs.mode != 'local'
+      if: inputs.mode != null && inputs.mode == 'prd'
       run: npm run test:e2e
+      env:
+        HOST: https://cool-text-converter.vercel.app
     - uses: actions/upload-artifact@v3
       if: always()
       with:
