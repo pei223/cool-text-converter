@@ -42,7 +42,7 @@ npm run test:e2e-local
 # UI操作モード
 npm run test:e2e-local -- --ui
 # テストレポート表示
-npx playwright show-report --port 9999
+npm run report:e2e
 ```
 
 ### テスト生成
