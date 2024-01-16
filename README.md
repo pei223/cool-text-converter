@@ -60,12 +60,12 @@ npm run build
 ## data-testid命名規則
 
 ```
-<該当コンポーネント名>:<対象の要約>:<コンポーネント種別>
+<コンポーネント種別>:<該当コンポーネント名>:<対象の要約>
 ```
 
 例えばmarkdownのconvert画面の入力フォームは以下の通り
 ```
-markdown-convert-page:src-input:text-area
+text-area:markdown-convert-page:src-input
 ```
 
 ## その他技術的なところ

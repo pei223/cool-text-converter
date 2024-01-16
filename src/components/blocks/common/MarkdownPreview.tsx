@@ -39,9 +39,9 @@ const StyledPre = styled.pre`
   }
 `;
 
-function MarkdownPreview({ markdownText, sx }: Props) {
+function MarkdownPreview({ markdownText, sx,...rest }: Props) {
   return (
-    <Box sx={sx}>
+    <Box sx={sx} {...rest}>
       <Typography color="text.secondary" variant="h5">
         Preview
       </Typography>
