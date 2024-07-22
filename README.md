@@ -3,7 +3,7 @@
 入力値を良い感じに解釈して、markdown とかに良い感じに変換する
 
 以下のURLでデプロイされている
-https://cool-text-converter.vercel.app/convert
+https://cool-text-converter.vercel.app/markdown/convert
 
 vercel: https://vercel.com/pei223/cool-text-converter
 
