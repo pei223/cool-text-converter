@@ -77,3 +77,27 @@ test("Input value and select Folding", async ({ page }) => {
   await expect(getPreview(page)).toHaveText(/サマリー/);
   await expect(getPreview(page)).toHaveText(/test/);
 });
+
+test("Input value and select bullet points", async ({ page }) => {
+  await gotoConvertMarkdownPage(page);
+
+  await inputValue(page, "test\ntest");
+  const bulletPointsBtn = page.locator(
+    "[data-testid='btn:markdown-convert-page:convert-Bullet points']"
+  );
+  await bulletPointsBtn.click();
+  await expect(bulletPointsBtn).toHaveClass(/MuiChip-clickableColorPrimary/);
+  await expect(getPreview(page)).toHaveText(/test/);
+});
+
+test("Input value and select check boxes", async ({ page }) => {
+  await gotoConvertMarkdownPage(page);
+
+  await inputValue(page, "test\ntest");
+  const checkBoxesBtn = page.locator(
+    "[data-testid='btn:markdown-convert-page:convert-Check boxes']"
+  );
+  await checkBoxesBtn.click();
+  await expect(checkBoxesBtn).toHaveClass(/MuiChip-clickableColorPrimary/);
+  await expect(getPreview(page)).toHaveText(/test/);
+});
