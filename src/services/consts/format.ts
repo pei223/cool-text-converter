@@ -5,4 +5,6 @@ export type ConvertibleMarkdownFormats =
   | "JSON"
   | "Folding"
   | "CSV"
-  | "TSV";
+  | "TSV"
+  | "Bullet points"
+  | "Check boxes";

@@ -1,4 +1,6 @@
 import { infoLog } from "../../utils/logger";
+import { BulletPointsConverter } from "./BulletPointsConverter";
+import { CheckBoxesConverter } from "./CheckBoxesConverter";
 import { CsvConverter } from "./CsvConverter";
 import { FoldingConverter } from "./FoldingConverter";
 import { ImageConverter } from "./ImageConverter";
@@ -16,6 +18,8 @@ export const markdownConverters: MarkdownConverter[] = [
   new TsvConverter(),
   new CsvConverter(),
   new FoldingConverter(),
+  new BulletPointsConverter(),
+  new CheckBoxesConverter(),
 ];
 
 export const matchConverter = (v: string): MarkdownConverter | null => {
